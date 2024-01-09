@@ -20,7 +20,8 @@
       "low": "low",
       "offline": "offline"
     },
-    "streamServers": [{
+    "streamServers": [
+      {
         "streamServer": {
           "type": "NodeMediaServer",
           "statsUrl": "http://localhost:8000/api/streams",

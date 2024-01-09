@@ -5,7 +5,7 @@
 
 
 docker build . -t belabox-receiver
-docker run --rm -it --name belabox-receiver \
+docker run -it --name belabox-receiver \
  -p 5000:5000/udp \
  -p 8181:8181/tcp \
  -p 8282:8282/udp \
