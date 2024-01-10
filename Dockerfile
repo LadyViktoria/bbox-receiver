@@ -102,8 +102,8 @@ COPY --from=builder /app/target/release/noalbs /usr/local/bin/noalbs
 COPY files/sls.conf /etc/sls/sls.conf
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/logprefix /usr/local/bin/logprefix
-COPY files/noalbs.config.json /app/config.json
-COPY files/noalbs.env /app/.env
+COPY config/config.json.example /app/config.json
+COPY config/env.example /app/.env
 RUN set -xe; \
     ldconfig; \
     chmod 755 /usr/local/bin/logprefix;
