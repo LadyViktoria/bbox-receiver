@@ -66,7 +66,7 @@ RUN set -xe; \
 
 # NOALBS 2
 #
-ARG NOALBS_VERSION=v2.8.1
+ARG NOALBS_VERSION=v2
 RUN set -xe; \
     git clone https://github.com/715209/nginx-obs-automatic-low-bitrate-switching /app; \
     cd /app; \
