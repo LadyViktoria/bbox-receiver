@@ -6,21 +6,33 @@
   },
   "switcher": {
     "bitrateSwitcherEnabled": true,
-    "onlySwitchWhenStreaming": true,
+    "onlySwitchWhenStreaming": false,
     "instantlySwitchOnRecover": true,
     "autoSwitchNotification": true,
     "retryAttempts": 5,
     "triggers": {
-      "low": 800,
-      "rtt": 2500,
-      "offline": null
+      "low": 450,
+      "rtt": 1500,
+      "offline": 400
     },
     "switchingScenes": {
-      "normal": "live",
-      "low": "low",
-      "offline": "offline"
+      "normal": "LIVE",
+      "low": "LOW",
+      "offline": "BRB"
     },
     "streamServers": [
+      {
+        "streamServer": {
+          "type": "Belabox",
+          "statsUrl": "http://use.srt.belabox.net:8080/XXXXXXXXXX(STREAMID)XXXXXXXXXX",
+          "publisher": "XXXXXXXXXX(STREAMID)XXXXXXXXXX"
+        },
+        "name": "BELABOX cloud",
+        "priority": 0,
+        "overrideScenes": null,
+        "dependsOn": null,
+        "enabled": true
+      },
       {
         "streamServer": {
           "type": "NodeMediaServer",
@@ -35,7 +47,8 @@
         "name": "NMS",
         "priority": 0,
         "overrideScenes": null,
-        "dependsOn": null
+        "dependsOn": null,
+        "enabled": true
       },
       {
         "streamServer": {
@@ -49,11 +62,12 @@
         "dependsOn": {
           "name": "nginx",
           "backupScenes": {
-            "normal": "Scene 3",
+            "normal": "Scene 2",
             "low": "low",
-            "offline": "Scene 2"
+            "offline": "Scene 3"
           }
-        }
+        },
+        "enabled": true
       },
       {
         "streamServer": {
@@ -64,7 +78,8 @@
         "name": "SLS2",
         "priority": 0,
         "overrideScenes": null,
-        "dependsOn": null
+        "dependsOn": null,
+        "enabled": true
       },
       {
         "streamServer": {
@@ -80,7 +95,8 @@
           "low": "low",
           "offline": "offline"
         },
-        "dependsOn": null
+        "dependsOn": null,
+        "enabled": true
       }
     ]
   },
@@ -88,47 +104,59 @@
     "type": "Obs",
     "host": "localhost",
     "password": "password",
-    "port": 4444
+    "port": 4455,
+    "collections": {
+      "twitch": {
+        "profile": "twitch",
+        "collection": "twitch_scenes"
+      },
+      "kick": {
+        "profile": "kick",
+        "collection": "kick_scenes"
+      }
+    }
   },
   "chat": {
     "platform": "Twitch",
     "username": "715209",
-    "admins": [
-      "b3ck"
-    ],
+    "admins": ["b3ck"],
+    "language": "EN",
     "prefix": "!",
-    "enablePublicCommands": false,
+    "enablePublicCommands": true,
     "enableModCommands": true,
     "enableAutoStopStreamOnHostOrRaid": true,
+    "announceRaidOnAutoStop": true,
     "commands": {
       "Fix": {
-        "permission": null,
-        "alias": [
-          "f"
-        ]
+        "permission": "Mod",
+        "userPermissions": ["715209"],
+        "alias": ["f"]
       },
       "Switch": {
         "permission": "Mod",
-        "alias": [
-          "ss"
-        ]
+        "userPermissions": null,
+        "alias": ["ss"]
       },
       "Bitrate": {
         "permission": null,
-        "alias": [
-          "b"
-        ]
+        "userPermissions": null,
+        "alias": ["b"]
       }
     }
   },
   "optionalScenes": {
-    "starting": null,
-    "ending": null,
-    "privacy": "privacy"
+    "starting": "STARTING",
+    "ending": "ENDING",
+    "privacy": "PRIVACY",
+    "refresh": "REFRESH"
   },
   "optionalOptions": {
     "twitchTranscodingCheck": false,
     "twitchTranscodingRetries": 5,
-    "twitchTranscodingDelaySeconds": 15
+    "twitchTranscodingDelaySeconds": 15,
+    "offlineTimeout": null,
+    "recordWhileStreaming": false,
+    "switchToStartingSceneOnStreamStart": false,
+    "switchFromStartingSceneToLiveScene": false
   }
 }
